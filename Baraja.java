@@ -17,7 +17,7 @@ public class Baraja {   //creamos carta, constructor ,setter y toString
         }
 
         @Override
-        public String toString() {
+        public String toString() {//Necesario???
             return valor + " de " + palo;
         }
     }
