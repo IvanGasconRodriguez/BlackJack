@@ -1,37 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
- class Jugador
+public class Jugador
 {
-    private string nombre;
-    public static List<object> reparto;
-    
+    public string Nombre { get; set; }
+    public List<Baraja.Carta> Reparto { get; set; }
+
     public Jugador(string nombre)
     {
-        this.nombre=nombre;
+        Nombre = nombre;
+        Reparto = new List<Baraja.Carta>();
     }
 
-    public void recibirCarta()
+    public void RecibirCarta(Baraja.Carta carta)
     {
-        Random rnd = new Random();
-        int random = rnd.Next(0, Baraja.cartas.Count);
-        object carta = Baraja.cartas.ElementAt(random);
-        reparto.Add(carta);
-        Baraja.cartas.RemoveAt(random);
+        Reparto.Add(carta);
     }
 
-    public void mostrarCartas()
+    public void MostrarCartas()
     {
-        foreach (object carta in reparto)
+        Console.Write(Nombre + ": ");
+        foreach (Baraja.Carta carta in Reparto)
         {
-            System.Console.WriteLine(carta);
+            Console.Write(carta + ", ");
         }
+        Console.WriteLine(" (Valor: " + CalcularValorCartas() + ")");
     }
-    //Aqui es donde no me acepta valor numerico
-    public static int calcularValorCartas() {
-            int valorTotal = 0;
-            foreach (object carta in reparto) 
+
+   
+    public int CalcularValorCartas()
+    {
+        int valorTotal = 0;
+        foreach (Baraja.Carta carta in Reparto)
+        {
+            
+            switch(carta.Valor)
             {
-              valorTotal += carta.valorNumerico;
+                case "AS":
+                valorTotal++;
+                break;
+                case "2":
+                valorTotal+=2;
+                break;
+                case "3":
+                valorTotal+=3;
+                break;
+                case "4":
+                valorTotal+=4;
+                break;
+                case "5":
+                valorTotal+=5;
+                break;
+                case "6":
+                valorTotal+=6;
+                break;
+                case "7":
+                valorTotal+=7;
+                break;
+                case "8":
+                valorTotal+=8;
+                break;
+                case "9":
+                valorTotal+=9;
+                break;
+                case "10":
+                valorTotal+=10;
+                break;
+                case "J":
+                valorTotal+=10;
+                break;
+                case "Q":
+                valorTotal+=10;
+                break;
+                case "K":
+                valorTotal+=10;
+                break;
+                
+
+            
+
+
             }
-            return valorTotal;
+        }
+        return valorTotal;
     }
+    
 }
